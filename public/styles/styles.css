@@ -1,9 +1,6 @@
 .list-group-item {
   line-height: 2.5;
 }
-#nav-item {
-color: black;
-}
 .jumbotron{
   color: rgb(83, 83, 223);
   background-image: url(../styles/images/sunshine.jpg);
