@@ -1,29 +1,27 @@
 .list-group-item {
   line-height: 2.5;
 }
-.nav {
-  
+#nav-item {
+color: black;
 }
 .jumbotron{
-  color: #7a4a88;
-  background-image: url(../styles/images/treebackground.jpg);
+  color: rgb(83, 83, 223);
+  background-image: url(../styles/images/sunshine.jpg);
   background-color:black;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 50% 140%;
-  margin:auto;
+  background-position: 10% 70%;
+margin-top: 100px;
 }
 #profile-page-body {
   text-align: center;
   font-family: "Quicksand", sans-serif;
   color: rgb(255, 0, 140);
-  background-image: url(../styles/images/treebackground.jpg);
+  background-image: url(../styles/images/sunshine.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 50% 140%;
-  background-color: #a45ee5; /* Used if the image is unavailable */
+  background-position: 10% 70%;
   z-index: 800;
-  margin-bottom:0;
 }
