@@ -8,15 +8,14 @@
 .nav {
   
 }
-.jumbotron{
+.mainTitle{
   color: rgb(83, 83, 223);
   background-image: url(../styles/images/sunshine.jpg);
-  background-color:black;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 10% 70%;
-margin-top: 100px;
+  margin-top: 170px;
 }
 #profile-page-body {
   text-align: center;
