@@ -1,0 +1,124 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/" id="macmac">Good Neighbor</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            {{!-- <li class="nav-item active">
+                <a class="nav-link" href="" data-toggle="modal" data-target="#signinModal">Signin <span
+                        class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="" data-toggle="modal" data-target="#signupModal">Signup <span
+                        class="sr-only">(current)</span></a>
+            </li> --}}
+            <li class="nav-item">
+                <a class="nav-link" style="color: green">Welcome: {{ username }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout" style="color: red">Logout</a>
+            </li>
+        </ul>
+        <span class="navbar-text" style="text-decoration: underline;">
+            I will be collapsed~
+        </span>
+    </div>
+</nav>
+
+<br>
+<div class="container">
+    <h2 style="text-align: center">(MAIN PAGE)</h2>
+
+
+
+    <!-- SHOW POST -->
+    <div class="card" style="width: 50%;">
+        <div class="card-body" id="cardcomment">
+            <ul id="ulComment">
+                {{#each allPost }}
+                <li>
+                    <a style="font-size: 30px;">{{this.member_post}};</a> by <a
+                        style="color: green;">{{this.user.name}}; <br>Time:
+                        {{formatTime this.createdAt "MM-DD-YYYY hh:mm"}}</a>
+                </li>
+                {{!-- SHOW COMMENT --}}
+                <div style="margin-top: 20px;">Comment: </div>
+                <ul style="padding-left: 20px;">
+
+                    {{#each ../allComment}}
+                    {{#if_eq this.postId ../this.id}}
+                    <li style="list-style-type:circle;">
+                        <a style="color: grey">{{this.member_comment}}; by {{this.member_name}}</a>
+                    </li>
+                    {{/if_eq}}
+                    {{/each}}
+
+                </ul>
+                {{!-- MAKE COMMENT --}}
+                <form>
+                    <div class="form-group">
+                        {{!-- <label for="commentContent">: </label> --}}
+                        <input type="text" data-inputcomment="{{this.id}}" class="form-control inputclass"
+                            placeholder="Make new comment here" name="namenewcomment"></textarea>
+                    </div>
+                    <button type="submit" class="subcomment" onclick="executeJS(this)"
+                        data-submitcomment="{{this.id}}">Submit</button>
+                </form>
+                <hr>
+                {{/each}}
+            </ul>
+        </div>
+        <hr>
+        {{!-- MAKE POST --}}
+        <div class="card-body" id="card">
+            <form>
+                <div class="form-group">
+                    <label for="postContent">Make new post: </label>
+                    <textarea type="text" class="form-control" id="inputnewpost" placeholder="Make a new post..."
+                        name="namenewpost"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" id="submitnewpost">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+<br><br>
+<script>
+
+
+
+
+    $(document).on("click", "#submitnewpost", (event) => {
+        event.preventDefault();
+
+        var newPost = {
+            member_post: $("#inputnewpost").val().trim()
+        };
+        $.ajax("/success/post", {
+            type: "POST",
+            data: newPost
+        }).then(() => {
+            location.reload();
+        });
+    })
+
+    function executeJS(element) {
+        var id = $(element).data('submitcomment');
+        var member_comment = $("#ulComment [data-inputcomment=" + id + "]").val().trim();
+        console.log(id);
+        var newComment = {
+            postId: id,
+            member_comment: member_comment
+        };
+        //alert(id + "  $$  " + newComment.member_comment)
+        $.ajax("/success/comment", {
+            type: "POST",
+            data: newComment
+        }).then(() => {
+            // location.reload();
+        })
+
+    }
+</script>
