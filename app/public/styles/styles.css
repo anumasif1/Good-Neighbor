@@ -1,5 +1,5 @@
 body {
-  background-image: url(/sunshinejpg/);
+  /* background-image: url(/sunshinejpg/); */
 }
 
 .list-group-item {
@@ -14,7 +14,7 @@ body {
 }
 .mainTitle{
   color: rgb(83, 83, 223);
-  /* background-image: url(/sunshinejpg/); */
+  background-image: url(/sunshinejpg/);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -25,7 +25,7 @@ body {
   text-align: center;
   font-family: "Quicksand", sans-serif;
   color: rgb(255, 0, 140);
-  /* background-image: url(/sunshinejpg/); */
+  background-image: url(/sunshinejpg/);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
