@@ -26,7 +26,7 @@ app.set('view engine', '.hbs');
 
 
 app.get('/', function(req, res){
-res.send('Welcome to Passport with Sequelize');
+res.redirect("index");
 });
 
 
