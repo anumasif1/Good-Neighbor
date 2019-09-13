@@ -4,13 +4,14 @@ var passport = require("passport");
 var session = require("express-session");
 var exphbs = require("express-handlebars");
 var bodyParser = require('body-parser');
+var env = require('dotenv').load();
 var moment = require("moment");
 var path = require("path");
 
 var PORT = process.env.PORT || 3000;
 
-// var flash=require("connect-flash");
-// app.use(flash());
+var flash=require("connect-flash");
+app.use(flash());
 
 var hbs = require('handlebars');
 hbs.registerHelper('if_eq', function (a, b, opts) {
@@ -44,8 +45,15 @@ var db = require("./app/models");
 var authRoute = require("./app/routes/auth")(app, passport);
 require("./app/config/passport/passport")(passport, db.user);
 
-db.sequelize.sync({force: false}).then(function () {
-    app.listen(PORT, function () {
-        console.log("App listening on PORT " + PORT);
-    });
-});
+db.sequelize.sync().then(function(){
+  console.log('Nice! Database looks fine')
+
+  }).catch(function(err){
+  console.log(err,"Something went wrong with the Database Update!")
+  });
+
+
+
+app.listen(PORT, function(err){
+  if(!err)
+  console.log("Site is live"); else console.log(err)
