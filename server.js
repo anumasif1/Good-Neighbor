@@ -39,13 +39,9 @@ app.set('views', './app/views');
 app.engine('hbs', exphbs({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 
-
-
 app.get("/", (req, res) => {
     res.redirect("index");
 })
-
-
 
 var authRoute = require("./app/routes/auth")(app, passport);
 
