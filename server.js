@@ -9,8 +9,8 @@ var path = require("path");
 
 var PORT = process.env.PORT || 3000;
 
-var flash=require("connect-flash");
-app.use(flash());
+// var flash=require("connect-flash");
+// app.use(flash());
 
 var hbs = require('handlebars');
 hbs.registerHelper('if_eq', function (a, b, opts) {
