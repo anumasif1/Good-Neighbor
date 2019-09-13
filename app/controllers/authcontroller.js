@@ -6,7 +6,7 @@ var gloUser = "";
 exports.dashboard = function (req, res) {
     db.post
         .findAll({
-            include: [db.user]
+            // include: [db.user]
         })
         .then((resultPost) => {
             db.comment
