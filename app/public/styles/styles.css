@@ -1,0 +1,31 @@
+.list-group-item {
+  line-height: 2.5;
+}
+
+#mapid {
+  height: 400px;
+}
+.nav {
+  
+}
+.mainTitle{
+  color: rgb(83, 83, 223);
+  background-image: url(../styles/images/sunshine.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 10% 70%;
+  margin-top: 170px;
+}
+#profile-page-body {
+  text-align: center;
+  font-family: "Quicksand", sans-serif;
+  color: rgb(255, 0, 140);
+  background-image: url(../styles/images/sunshine.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 10% 70%;
+  z-index: 800;
+  margin-bottom:0;
+}
