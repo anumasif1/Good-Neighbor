@@ -3,11 +3,9 @@
 }
 
 #mapid {
-  height: 400px;
+  height: 250px;
 }
-.nav {
-  
-}
+
 .mainTitle{
   color: rgb(83, 83, 223);
   background-image: url(../styles/images/sunshine.jpg);
