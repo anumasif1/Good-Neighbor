@@ -1,4 +1,3 @@
-
 //var to replace marker coordinates with
 var latLong = [33.645, -117.835];
 
@@ -20,4 +19,4 @@ L.control.scale().addTo(mymap);
 L.marker(latLong).addTo(mymap);
 
 //Add Circle with 1000 meters from middle point
-L.circle(latLong, {radius: 1000}).addTo(mymap);
+L.circle(latLong, {radius: 1000}).addTo(mymap);git 
