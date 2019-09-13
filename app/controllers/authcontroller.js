@@ -12,14 +12,22 @@ exports.dashboard = function (req, res) {
             db.comment
                 .findAll({})
                 .then((resultComment) => {
-                    // gloUser = req.user.name;
+                    gloUser = req.user.name;
                     res.render("success", {
-                        username: "req.user.name",
+                        username: req.user.name,
                         allPost: resultPost,
                         allComment: resultComment
                     });
                     // res.json(resultComment);
                 })
+                .catch((err) => {
+                    console.log(err);
+                    res.status(400).json({ err: err, message: err.message });
+                });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(400).json({ err: err, message: err.message });
         });
 }
 
@@ -27,7 +35,7 @@ exports.dashboardPost = function (req, res) {
     var data = req.body;
     console.log(data)
     db.post
-        .create({ member_post: data.member_post, userId: 1 })
+        .create({ member_post: data.member_post, userId: req.user.id })
         .then((result) => {
             res.json(result);
         })
@@ -41,7 +49,7 @@ exports.dashboardComment = function (req, res) {
     var data = req.body;
     console.log(data)
     db.comment
-        .create({ member_comment: data.member_comment, postId: data.postId, member_name: "gloUser"})
+        .create({ member_comment: data.member_comment, postId: data.postId, member_name: gloUser})
         .then((resultComment) => {
             res.json(resultComment);
         })
