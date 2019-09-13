@@ -32,7 +32,7 @@ var syncOptions = { force: false };
 if (process.env.NODE_ENV === 'test') {
   syncOptions.force = true;
 }
-
+//TEST
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
   app.listen(PORT, function() {
@@ -42,6 +42,6 @@ db.sequelize.sync(syncOptions).then(function() {
       PORT
     );
   });
-});
+}); 
 
 module.exports = app;
