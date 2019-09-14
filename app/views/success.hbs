@@ -93,8 +93,8 @@
                                     <nav>
                                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                             <li>
-                                                <a style="color: green;">{{this.user.name}}
-                                                    < {{formatTime this.createdAt "MM-DD-YYYY hh:mm"}}></a>
+                                                <a style="color: green;">
+                                                    <{{formatTime this.createdAt "MM-DD-YYYY hh:mm"}}> {{this.user.name}}</a>
                                             </li>
                                         </div>
                                     </nav>
@@ -134,8 +134,8 @@
                                                             {{#if_eq this.postId ../this.id}}
                                                             <li style="list-style-type:circle;">
                                                                 <a style="color: grey">{{this.member_comment}};
-                                                                    {{this.member_name}} <
-                                                                        {{formatTime this.createdAt "MM-DD-YYYY hh:mm"}}>
+                                                                    <{{formatTime this.createdAt "MM-DD-YYYY hh:mm"}}>
+                                                                        {{this.member_name}}
                                                                 </a>
                                                             </li>
                                                             {{/if_eq}}
