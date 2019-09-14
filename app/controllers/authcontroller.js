@@ -78,7 +78,6 @@ exports.delPost = function(req, res) {
 }
 
 exports.logout = function (req, res) {
-    console.log(req.session)
     req.session.destroy(function (err) {
         res.redirect('/');
     });

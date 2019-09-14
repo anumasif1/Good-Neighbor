@@ -32,11 +32,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/signin" id="signin" method="post" name="signin">
+                {{!-- <form action="/logout" id="logout" method="post" name="logout"> --}}
                     <div class="form-group">Do you want to logout? </div>
-                    <button type="submit" class="btn btn-danger" href="/logout/">Yes</button>&nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-danger" href="/logout">Yes</a>&nbsp;&nbsp;&nbsp;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                </form>
+                {{!-- </form> --}}
 
             </div>
         </div>
