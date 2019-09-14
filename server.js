@@ -39,11 +39,11 @@ app.get("/", (req, res) => {
   res.redirect("index");
 })
 
-var models = require("./app/models");
+var db = require("./app/models");
 var authRoute = require("./app/routes/auth")(app, passport);
-require("./app/config/passport/passport")(passport, models.user);
+require("./app/config/passport/passport")(passport, db.user);
 
-models.sequelize.sync({ force: false }).then(function () {
+db.sequelize.sync({ force: true }).then(function () {
   app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
   });
