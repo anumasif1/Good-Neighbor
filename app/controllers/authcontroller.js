@@ -81,7 +81,7 @@ exports.getLatLong = function (req, res) {
     db.user
         .findOne({
             where: {
-                name: "chao@uci.edu"
+                name: "uci@uci.edu"
             }
         })
         .then((userdata) => {
