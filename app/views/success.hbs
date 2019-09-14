@@ -18,8 +18,8 @@
         </span>
     </div>
 </nav> --}}
-<div id="nav" class="navbar-light bg-light">
-    <ul class="nav">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" style="color: green">Welcome: {{ username }}</a>
         </li>
@@ -27,7 +27,7 @@
             <a class="nav-link" href="/logout" style="color: red">Logout</a>
         </li>
     </ul>
-</div>
+</nav>
 
 {{!-- <div style="background-color:rgb(217, 217, 247);"> --}}
 <div class="container-fluid" style="margin-top: 0px;">
@@ -70,13 +70,14 @@
                 </div>
             </div>
         </div>
+
         <!-- ​PART 3 -->
         <!-- newpost page -->
         <div class="container p-0">
             <div class="col-md-12">
                 <div class="row mb-2">
                     <div id="mapid"></div>
-                    <script src="../public/assets/js/map.js"></script>
+
                 </div>
 
                 <div class="row">
@@ -91,19 +92,28 @@
                                     {{#each allPost }}
                                     <nav>
                                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                            member_name
+                                            <li>
+                                                <a style="color: green;">{{this.user.name}}
+                                                    < {{formatTime this.createdAt "MM-DD-YYYY hh:mm"}}></a>
+                                            </li>
                                         </div>
                                     </nav>
                                     <!-- postview -->
                                     <div class="tab-content" id="nav-tabContent">
-                                        <li>
-                                            <a style="font-size: 30px;">{{this.member_post}};</a> by <a
-                                                style="color: green;">{{this.user.name}}; <br>Time:
-                                                {{formatTime this.createdAt "MM-DD-YYYY hh:mm"}}</a>
-                                        </li>
+                                        <a style="font-size: 30px;">{{this.member_post}};</a>
 
                                         ​
                                     </div>
+                                    <form>
+                                        <div class="form-group">
+                                            {{!-- <label for="commentContent">: </label> --}}
+                                            <input type="text" data-inputcomment="{{this.id}}"
+                                                class="form-control inputclass" placeholder="Make new comment here"
+                                                name="namenewcomment"></textarea>
+                                        </div>
+                                        <button type="submit" class="subcomment btn btn-outline-success"
+                                            onclick="executeJS(this)" data-submitcomment="{{this.id}}">Submit</button>
+                                    </form>
                                     <div class="container pl-0 pr-0">
                                         ​
                                         <button type="button" class="btn btn-light mt-3 active btn-block"
@@ -112,37 +122,28 @@
                                         </button>
                                         ​
                                         <div class="row ml-0 mr-0">
-                                            <div id="demo" class="collapse">
+                                            <div id="demo" class="collapse" style="width: 100%;">
                                                 <div class="card bg-light mb-3">
                                                     <div class="card-body">
                                                         {{!-- SHOW COMMENT --}}
-                                                        <div style="margin-top: 20px;">Comment: </div>
-                                                        <ul style="padding-left: 20px;">
+                                                        {{!-- <div style="margin-top: 20px; margin-bottom: 10px;">Comment:
+                                                        </div> --}}
+                                                        <ul style="">
 
                                                             {{#each ../allComment}}
                                                             {{#if_eq this.postId ../this.id}}
                                                             <li style="list-style-type:circle;">
-                                                                <a style="color: grey">{{this.member_comment}}; by
-                                                                    {{this.member_name}}</a>
+                                                                <a style="color: grey">{{this.member_comment}};
+                                                                    {{this.member_name}} <
+                                                                        {{formatTime this.createdAt "MM-DD-YYYY hh:mm"}}>
+                                                                        </a>
                                                             </li>
                                                             {{/if_eq}}
                                                             {{/each}}
-
                                                         </ul>
 
-                                                        <form>
-                                                            <div class="form-group">
-                                                                {{!-- <label for="commentContent">: </label> --}}
-                                                                <input type="text" data-inputcomment="{{this.id}}"
-                                                                    class="form-control inputclass"
-                                                                    placeholder="Make new comment here"
-                                                                    name="namenewcomment"></textarea>
-                                                            </div>
-                                                            <button type="submit" class="subcomment"
-                                                                onclick="executeJS(this)"
-                                                                data-submitcomment="{{this.id}}">Submit</button>
-                                                        </form>
-                                                        <hr>
+
+
 
                                                     </div>
                                                 </div>
@@ -163,8 +164,38 @@
 {{!-- </div> --}}
 <br><br>
 
-
+{{!-- <script src="/mapjs/"></script> --}}
 <script>
+
+
+    //SQL Pulls for latLong and Address
+    var latLong = [33.645, -117.835];
+    var address = 'UCI DCE';
+
+    //Need to replace setView to lat/long in database
+    var mymap = L.map('mapid').setView(latLong, 13);
+
+    //Mapbox API key + access token
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 16,
+        id: 'mapbox.streets',
+        accessToken: 'pk.eyJ1IjoidmlvbGlubWFuYSIsImEiOiJjazBlbXFqM3QwMWZ3M2lvYTVtMTBtdzZzIn0.25nYvC4e7xl4WXKLmKFqew'
+    }).addTo(mymap);
+
+    //Add Scale to Map
+    L.control.scale().addTo(mymap);
+
+    //Add Pin to Map, replace marker with lat/long in database
+    L.marker(latLong).bindPopup(address).addTo(mymap);
+
+    //Add Circle with 1000 meters from middle point
+    L.circle(latLong, { radius: 1000 }).addTo(mymap);
+
+    //console.log(process.env);
+
+
+
     $(document).on("click", "#submitnewpost", (event) => {
         event.preventDefault();
 
