@@ -2,9 +2,9 @@
   <div class="main-page">
     <div id="nav" class="navbar-light bg-light">
       <ul class="nav justify-content-center">
-        <li class="nav-item">
+        {{!-- <li class="nav-item">
           <a class="nav-link active" href="#">Good Neighbor</a>
-        </li>
+        </li> --}}
         <li class="nav-item">
           <a class="nav-link" href="" data-toggle="modal" data-target="#signinModal">Signin <span
               class="sr-only">(current)</span></a>
@@ -13,11 +13,14 @@
           <a class="nav-link" href="" data-toggle="modal" data-target="#signupModal">Signup <span
               class="sr-only">(current)</span></a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: red">{{ message }}</a>
+        </li>
       </ul>
     </div>
     <div class="mainTitle">
       <div class="container">
-        <h1 class="display-4">Good Neighbor</h1>
+        <h1 class="display-4" style="font-weight: bold;">Good Neighbor</h1>
         <p class="lead"></p>
       </div>
     </div>
@@ -25,73 +28,77 @@
 </div>
 <!-- Signin Modal -->
 <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true" style="text-align: left;">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Signin Modal</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="/signin" id="signin" method="post" name="signin">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Enter email" name="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
-                            name="password">
-                    </div>
-                    <button type="submit" class="btn btn-primary" id="mac">Submit</button>
-                </form>
+  aria-hidden="true" style="text-align: left; color: black;">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Signin</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/signin" id="signin" method="post" name="signin">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email Address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+              placeholder="Enter email" name="name">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password"
+              name="password">
+          </div>
+          <button type="submit" class="btn btn-primary" id="mac">Submit</button>
+        </form>
 
-            </div>
-            {{!-- <div class="modal-footer">
+      </div>
+      {{!-- <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Save changes</button>
                 </div> --}}
-        </div>
     </div>
+  </div>
 </div>
 
 <!-- Signup Modal -->
 <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true" style="text-align: left;">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Signup Modal</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="/signup" id="signup" method="post" name="signup">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail0" aria-describedby="emailHelp"
-                            placeholder="Enter email" name="name">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                            else.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword0" placeholder="Password"
-                            name="password">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
-            {{!-- <div class="modal-footer">
+  aria-hidden="true" style="text-align: left; color: black;">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Signup</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/signup" id="signup" method="post" name="signup">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email Address</label>
+            <input type="email" class="form-control" id="exampleInputEmail0" aria-describedby="emailHelp"
+              placeholder="Enter email" name="name">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+              else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword0" placeholder="Enter Password"
+              name="password">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword2">Address</label>
+            <input type="text" class="form-control" id="exampleInputPassword0" placeholder="Enter Address" name="address">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      {{!-- <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Save changes</button>
                 </div> --}}
-        </div>
     </div>
+  </div>
 </div>
 
 <body id="profile-page-body">

@@ -9,7 +9,7 @@ module.exports = function (app, passport) {
         failureRedirect: '/failhandler'
     }
     ));
-    
+
     app.get('/success', isLoggedIn, authController.dashboard);
     app.post('/success/post', authController.dashboardPost);
     app.post('/success/comment', authController.dashboardComment);
@@ -19,10 +19,8 @@ module.exports = function (app, passport) {
     });
     app.get('/logout', authController.logout);
     app.post('/signin', passport.authenticate('local-signin', {
-
         successRedirect: '/success',
         failureRedirect: '/failhandler'
-
     }
     ));
     app.get('/failhandler', (req, res) => {
@@ -38,7 +36,7 @@ module.exports = function (app, passport) {
     app.get('/mapjs/', (req, res) => {
         res.sendFile(path.join(__dirname, '../public/assets/js/map.js'));
     })
-    
+
     app.use('', function (req, res) {
         // res.sendFile(path.join(__dirname, '../public/assets/img/404.png'));
         res.redirect("index")
@@ -49,7 +47,6 @@ module.exports = function (app, passport) {
             return next();
         res.redirect('/');
     }
-
     function isLoggedInHome(req, res, next) {
         if (!req.isAuthenticated()) {
             return next();

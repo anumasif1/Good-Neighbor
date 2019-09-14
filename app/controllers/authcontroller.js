@@ -47,7 +47,7 @@ exports.dashboardPost = function (req, res) {
 
 exports.dashboardComment = function (req, res) {
     var data = req.body;
-    console.log(data)
+    // console.log(data)
     db.comment
         .create({ member_comment: data.member_comment, postId: data.postId, member_name: gloUser})
         .then((resultComment) => {

@@ -24,7 +24,6 @@ module.exports = function (passport, user) {
             passReqToCallback: true
         },
         function (req, name, password, done) {
-
             var generateHash = function (password) {
                 return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
             };
@@ -40,7 +39,8 @@ module.exports = function (passport, user) {
                     var data =
                     {
                         name: name,
-                        password: userPassword
+                        password: userPassword,
+                        address: req.body.address,
                     };
                     User.create(data).then(function (newUser, created) {
                         if (!newUser) {
