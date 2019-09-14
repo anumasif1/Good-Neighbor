@@ -74,89 +74,89 @@
         <!-- newpost page -->
         <div class="container p-0">
             <div class="col-md-12">
-            <div class="row mb-2">
-                <img src="/sunshinejpg/" alt="map sample"
-                    height="250" width="100%">
-            </div>
+                <div class="row mb-2">
+                    <div id="mapid"></div>
+                    <script src="../public/assets/js/map.js"></script>
+                </div>
 
-            <div class="row">
-                <div class="card bg-light mb-3" style="width: 100%;">
-                    <div class="card-header">Posts</div>
-                    ​
+                <div class="row">
+                    <div class="card bg-light mb-3" style="width: 100%;">
+                        <div class="card-header">Posts</div>
+                        ​
 
-                    <div class="card-body">
-                        <div class="container" style="padding: 20px;">
+                        <div class="card-body">
+                            <div class="container" style="padding: 20px;">
 
-                            <ul id="ulComment">
-                                {{#each allPost }}
-                                <nav>
-                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                        member_name
+                                <ul id="ulComment">
+                                    {{#each allPost }}
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                            member_name
+                                        </div>
+                                    </nav>
+                                    <!-- postview -->
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <li>
+                                            <a style="font-size: 30px;">{{this.member_post}};</a> by <a
+                                                style="color: green;">{{this.user.name}}; <br>Time:
+                                                {{formatTime this.createdAt "MM-DD-YYYY hh:mm"}}</a>
+                                        </li>
+
+                                        ​
                                     </div>
-                                </nav>
-                                <!-- postview -->
-                                <div class="tab-content" id="nav-tabContent">
-                                    <li>
-                                        <a style="font-size: 30px;">{{this.member_post}};</a> by <a
-                                            style="color: green;">{{this.user.name}}; <br>Time:
-                                            {{formatTime this.createdAt "MM-DD-YYYY hh:mm"}}</a>
-                                    </li>
+                                    <div class="container pl-0 pr-0">
+                                        ​
+                                        <button type="button" class="btn btn-light mt-3 active btn-block"
+                                            data-toggle="collapse" data-target="#demo">
+                                            <div class="glyphicon glyphicon-collapse-down"></div> Comments
+                                        </button>
+                                        ​
+                                        <div class="row ml-0 mr-0">
+                                            <div id="demo" class="collapse">
+                                                <div class="card bg-light mb-3">
+                                                    <div class="card-body">
+                                                        {{!-- SHOW COMMENT --}}
+                                                        <div style="margin-top: 20px;">Comment: </div>
+                                                        <ul style="padding-left: 20px;">
 
-                                    ​
-                                </div>
-                                <div class="container pl-0 pr-0">
-                                    ​
-                                    <button type="button" class="btn btn-light mt-3 active btn-block"
-                                        data-toggle="collapse" data-target="#demo">
-                                        <div class="glyphicon glyphicon-collapse-down"></div> Comments
-                                    </button>
-                                    ​
-                                    <div class="row ml-0 mr-0">
-                                        <div id="demo" class="collapse">
-                                            <div class="card bg-light mb-3">
-                                                <div class="card-body">
-                                                    {{!-- SHOW COMMENT --}}
-                                                    <div style="margin-top: 20px;">Comment: </div>
-                                                    <ul style="padding-left: 20px;">
+                                                            {{#each ../allComment}}
+                                                            {{#if_eq this.postId ../this.id}}
+                                                            <li style="list-style-type:circle;">
+                                                                <a style="color: grey">{{this.member_comment}}; by
+                                                                    {{this.member_name}}</a>
+                                                            </li>
+                                                            {{/if_eq}}
+                                                            {{/each}}
 
-                                                        {{#each ../allComment}}
-                                                        {{#if_eq this.postId ../this.id}}
-                                                        <li style="list-style-type:circle;">
-                                                            <a style="color: grey">{{this.member_comment}}; by
-                                                                {{this.member_name}}</a>
-                                                        </li>
-                                                        {{/if_eq}}
-                                                        {{/each}}
+                                                        </ul>
 
-                                                    </ul>
+                                                        <form>
+                                                            <div class="form-group">
+                                                                {{!-- <label for="commentContent">: </label> --}}
+                                                                <input type="text" data-inputcomment="{{this.id}}"
+                                                                    class="form-control inputclass"
+                                                                    placeholder="Make new comment here"
+                                                                    name="namenewcomment"></textarea>
+                                                            </div>
+                                                            <button type="submit" class="subcomment"
+                                                                onclick="executeJS(this)"
+                                                                data-submitcomment="{{this.id}}">Submit</button>
+                                                        </form>
+                                                        <hr>
 
-                                                    <form>
-                                                        <div class="form-group">
-                                                            {{!-- <label for="commentContent">: </label> --}}
-                                                            <input type="text" data-inputcomment="{{this.id}}"
-                                                                class="form-control inputclass"
-                                                                placeholder="Make new comment here"
-                                                                name="namenewcomment"></textarea>
-                                                        </div>
-                                                        <button type="submit" class="subcomment"
-                                                            onclick="executeJS(this)"
-                                                            data-submitcomment="{{this.id}}">Submit</button>
-                                                    </form>
-                                                    <hr>
-
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                ​ {{/each}}
-                            </ul>
+                                    ​ {{/each}}
+                                </ul>
+                            </div>
                         </div>
+                        ​
                     </div>
-                    ​
                 </div>
             </div>
-        </div>
         </div>
     </div>
 </div>
