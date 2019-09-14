@@ -15,6 +15,7 @@ exports.dashboard = function (req, res) {
                     gloUser = req.user.name;
                     res.render("success", {
                         username: req.user.name,
+                        userid: req.user.id,
                         allPost: resultPost,
                         allComment: resultComment
                     });
@@ -55,6 +56,23 @@ exports.dashboardComment = function (req, res) {
         })
         .catch((err) => {
             console.log(err);
+            res.status(400).json({ err: err, message: err.message });
+        });
+}
+
+exports.delPost = function(req, res) {
+    var id = req.params.id;
+    db.post
+        .destroy({
+            where: {
+                id: id
+            }
+        })
+        .then(() => {
+            console.log("DELETED Post!");
+            res.end();
+        })
+        .catch((err) => {
             res.status(400).json({ err: err, message: err.message });
         });
 }

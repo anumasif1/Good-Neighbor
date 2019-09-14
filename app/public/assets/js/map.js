@@ -22,4 +22,4 @@ L.marker(latLong).bindPopup(address).addTo(mymap);
 //Add Circle with 1000 meters from middle point
 L.circle(latLong, {radius: 1000}).addTo(mymap);
 
-console.log(process.env);
+// console.log(process.env);

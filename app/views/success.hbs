@@ -24,10 +24,32 @@
             <a class="nav-link" style="color: green">Welcome: {{ username }}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/logout" style="color: red">Logout</a>
+            <a class="nav-link" data-toggle="modal" data-target="#logoutModal" href="" style="color: red">Logout</a>
         </li>
     </ul>
 </nav>
+
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true" style="text-align: left; color: black;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Logout</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/signin" id="signin" method="post" name="signin">
+                    <div class="form-group">Do you want to logout? </div>
+                    <button type="submit" class="btn btn-primary" href="/logout/">Yes</button>&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 {{!-- <div style="background-color:rgb(217, 217, 247);"> --}}
 <div class="container-fluid" style="margin-top: 0px;">
@@ -94,17 +116,39 @@
                                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                             <li>
                                                 <a style="color: green;">
-                                                    <{{formatTime this.createdAt "MM-DD-YYYY hh:mm"}}> {{this.user.name}}</a>
+                                                    <{{formatTime this.createdAt "MM-DD-YYYY hh:mm"}}>
+                                                        {{this.user.name}}
+                                                </a>
                                             </li>
                                         </div>
                                     </nav>
                                     <!-- postview -->
-                                    <div class="tab-content" id="nav-tabContent">
-                                        <a style="font-size: 30px;">{{this.member_post}}</a>
+                                    <div class="tab-content" id="nav-tabContent" style="margin-top: 20px;">
 
-                                        ​
+
+
+
+
+                                        <div onclick="exeUpdatePost(this)" id="onclickUpdatePost" data-updatepost="{{this.id}}">
+                                            <a
+                                                style="font-size: 30px; display: inline">{{this.member_post}}</a><br>
+                                            <div style="display: none;">
+                                                <input type="text" data-inputupdatepost="{{this.id}}"><button
+                                                    type="submit"></button>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        {{#if_eq this.userId ../userid}}
+                                        <button class="btn btn-outline-danger btn-xs" onclick="exeDelPost(this)"
+                                            data-delpost="{{this.id}}">Withdraw Post</button>
+                                        {{/if_eq}}
                                     </div>
-                                    <form>
+                                    <form style="margin-top: 20px;">
                                         <div class="form-group">
                                             {{!-- <label for="commentContent">: </label> --}}
                                             <input type="text" data-inputcomment="{{this.id}}"
@@ -118,7 +162,7 @@
                                         ​
                                         <button type="button" class="btn btn-light mt-3 active btn-block"
                                             data-toggle="collapse" data-target="#demo">
-                                            <div class="glyphicon glyphicon-collapse-down"></div> Comments
+                                            <div class="glyphicon glyphicon-collapse-down"></div> Show Comments
                                         </button>
                                         ​
                                         <div class="row ml-0 mr-0">
@@ -129,11 +173,11 @@
                                                         {{!-- <div style="margin-top: 20px; margin-bottom: 10px;">Comment:
                                                         </div> --}}
                                                         <ul style="">
-
                                                             {{#each ../allComment}}
                                                             {{#if_eq this.postId ../this.id}}
                                                             <li style="list-style-type:circle;">
-                                                                <a style="color: grey">{{this.member_comment}}
+                                                                <a style="color: black">{{this.member_comment}}</a><br>
+                                                                <a style="color: grey">
                                                                     <{{formatTime this.createdAt "MM-DD-YYYY hh:mm"}}>
                                                                         {{this.member_name}}
                                                                 </a>
@@ -141,10 +185,6 @@
                                                             {{/if_eq}}
                                                             {{/each}}
                                                         </ul>
-
-
-
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -178,23 +218,31 @@
         }).then(() => {
             location.reload();
         });
-    })
+    });
 
     function executeJS(element) {
         var id = $(element).data('submitcomment');
         var member_comment = $("#ulComment [data-inputcomment=" + id + "]").val().trim();
-        console.log(id);
         var newComment = {
             postId: id,
             member_comment: member_comment
         };
-        //alert(id + "  $$  " + newComment.member_comment)
         $.ajax("/success/comment", {
             type: "POST",
             data: newComment
         }).then(() => {
             // location.reload();
         })
+    };
 
+    function exeDelPost(element) {
+        var id = $(element).data('delpost');
+        console.log(id);
+        $.ajax("/delpost/" + id, {
+            type: "DELETE"
+        }).then(() => {
+            console.log("Delete Post Successfully!");
+            location.reload();
+        })
     }
 </script>

@@ -23,9 +23,11 @@ module.exports = function (app, passport) {
         failureRedirect: '/failhandler'
     }
     ));
+    app.delete('/delpost/:id', authController.delPost);
     app.get('/failhandler', (req, res) => {
         res.render('index', { message: req.flash('error') })
-    })
+    });
+    
     //create routes to add merged files
     app.get('/stylecss', (req, res) => {
         res.sendFile(path.join(__dirname, '../public/styles/styles.css'));
