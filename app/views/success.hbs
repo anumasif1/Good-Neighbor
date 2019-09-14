@@ -1,27 +1,15 @@
-{{!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/" id="macmac">Good Neighbor</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" style="color: green">Welcome: {{ username }}</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/logout" style="color: red">Logout</a>
-            </li>
-        </ul>
-        <span class="navbar-text" style="text-decoration: underline;">
-            I will be collapsed~
-        </span>
-    </div>
-</nav> --}}
+<style>
+    .btn-xs {
+        padding: 2px 5px;
+        font-size: 13px;
+        border-radius: 6px;
+    }
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" href="/">Good Neighbor</a>
+            <a class="nav-link active" href="/">Good Neighbor</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" style="color: green">Welcome: {{ username }}</a>
@@ -32,6 +20,7 @@
     </ul>
 </nav>
 
+{{!-- Logou Modal --}}
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true" style="text-align: left; color: black;">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -45,7 +34,7 @@
             <div class="modal-body">
                 <form action="/signin" id="signin" method="post" name="signin">
                     <div class="form-group">Do you want to logout? </div>
-                    <button type="submit" class="btn btn-primary" href="/logout/">Yes</button>&nbsp;&nbsp;&nbsp;
+                    <button type="submit" class="btn btn-danger" href="/logout/">Yes</button>&nbsp;&nbsp;&nbsp;
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                 </form>
 
@@ -132,9 +121,9 @@
 
 
 
-                                        <div onclick="exeUpdatePost(this)" id="onclickUpdatePost" data-updatepost="{{this.id}}">
-                                            <a
-                                                style="font-size: 23px; display: inline">{{this.member_post}}</a><br>
+                                        <div onclick="exeUpdatePost(this)" id="onclickUpdatePost"
+                                            data-updatepost="{{this.id}}">
+                                            <a style="font-size: 23px; display: inline">{{this.member_post}}</a><br>
                                             <div style="display: none;">
                                                 <input type="text" data-inputupdatepost="{{this.id}}"><button
                                                     type="submit"></button>
