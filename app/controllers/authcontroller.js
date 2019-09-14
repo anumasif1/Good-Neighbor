@@ -50,7 +50,7 @@ exports.dashboardComment = function (req, res) {
     var data = req.body;
     // console.log(data)
     db.comment
-        .create({ member_comment: data.member_comment, postId: data.postId, member_name: gloUser})
+        .create({ member_comment: data.member_comment, postId: data.postId, member_name: gloUser })
         .then((resultComment) => {
             res.json(resultComment);
         })
@@ -60,7 +60,7 @@ exports.dashboardComment = function (req, res) {
         });
 }
 
-exports.delPost = function(req, res) {
+exports.delPost = function (req, res) {
     var id = req.params.id;
     db.post
         .destroy({
@@ -75,6 +75,47 @@ exports.delPost = function(req, res) {
         .catch((err) => {
             res.status(400).json({ err: err, message: err.message });
         });
+}
+
+exports.getLatLong = function (req, res) {
+    db.user
+        .findOne({
+            where: {
+                name: "chao@uci.edu"
+            }
+        })
+        .then((userdata) => {
+            // console.log(userdata.address)
+            var spAddress = userdata.address;
+            var NodeGeocoder = require('node-geocoder');
+            var options = {
+                provider: 'mapquest',
+
+                // Optional depending on the providers
+                httpAdapter: 'https', // Default
+                apiKey: '4KNdAC9qziy1VmxLiiM0kLhxJRCKCYhY', // for Mapquest, OpenCage, Google Premier
+                formatter: null         // 'gpx', 'string', ...
+            };
+
+            var geocoder = NodeGeocoder(options);
+
+            // Using callback
+            geocoder.geocode(spAddress, function (err, resgeo) {
+                // console.log(resgeo);
+                res.json(resgeo);
+            });
+
+            // Or using Promise
+            // geocoder.geocode('29 champs elysée paris')
+            //     .then(function (result) {
+            //         console.log(result);
+            //         res.json(result)
+            //     })
+            //     .catch(function (err) {
+            //         console.log(err);
+            //     });
+        })
+
 }
 
 exports.logout = function (req, res) {

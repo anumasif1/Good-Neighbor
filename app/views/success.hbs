@@ -11,8 +11,8 @@
         <li class="nav-item">
             <a class="nav-link active" href="/">Good Neighbor</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" style="color: green">Welcome: {{ username }}</a>
+        <li class="nav-item" id="geousername">
+            <a class="nav-link" style="color: green" data-geopurpose="{{username}}">Welcome: {{ username }}</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="modal" data-target="#logoutModal" href="" style="color: red">Logout</a>
@@ -198,6 +198,9 @@
 
 <script src="/mapjs/"></script>
 <script>
+
+    
+
     $(document).on("click", "#submitnewpost", (event) => {
         event.preventDefault();
 
@@ -237,4 +240,10 @@
             location.reload();
         })
     }
+    //$.ajax("/api/geotest/", {
+    //    type: "POST",
+    //    data: {geouser: "mac@mac.com"}
+    //}).then(() => {
+    //    console.log(data);
+    //})
 </script>

@@ -27,7 +27,7 @@ hbs.registerHelper('formatTime', function (date, format) {
   return mmnt.format(format);
 });
 
-app.use(session({ secret: "keyboard cat", cookie: { maxAge: 30 * 60 * 1000 }, resave: true, saveUninitialized: true }));
+app.use(session({ secret: "mac master", cookie: { maxAge: 30 * 60 * 1000 }, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
