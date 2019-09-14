@@ -36,6 +36,9 @@ module.exports = function (app, passport) {
     app.get('/mapjs/', (req, res) => {
         res.sendFile(path.join(__dirname, '../public/assets/js/map.js'));
     })
+    app.get('/favicon.ico/', (req, res) => {
+        res.sendFile(path.join(__dirname, '../public/assets/img/favicon.ico'))
+    })
 
     app.use('', function (req, res) {
         // res.sendFile(path.join(__dirname, '../public/assets/img/404.png'));
