@@ -1,4 +1,4 @@
-<img src="./public/assets/img/favicon.ico" align="right" width="160px" height="180px"/>
+<img src="./app/public/assets/img/favicon.ico" align="right" width="160px" height="180px"/>
 
 # Good Neighbor ![iTh1nkBadge](https://img.shields.io/badge/-iTh1nk-blue?logo=visual-studio-code) [![HitCount](http://hits.dwyl.com/iTh1nk/project-2.svg)](http://hits.dwyl.com/iTh1nk/project-2) 
 
