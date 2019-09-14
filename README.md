@@ -1,6 +1,6 @@
 <img src="./app/public/assets/img/favicon.ico" align="right" width="160px" height="180px"/>
 
-# Good Neighbor ![iTh1nkBadge](https://img.shields.io/badge/-iTh1nk-blue?logo=visual-studio-code) [![HitCount](http://hits.dwyl.com/iTh1nk/project-2.svg)](http://hits.dwyl.com/iTh1nk/project-2) 
+# Good Neighbor [![HitCount](http://hits.dwyl.com/iTh1nk/project-2.svg)](http://hits.dwyl.com/iTh1nk/project-2) 
 
 * This app is developed by using ***Model–View–Controller(MVC)*** structure; and interface is designed resolution responsively;
 * The purpose of this app is to help user find someone who lives nearby to get food materials;
