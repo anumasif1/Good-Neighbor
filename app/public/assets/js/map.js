@@ -1,11 +1,11 @@
 $.get("/api/geotest/", (data) => {
-  // console.log(data);
+  console.log(data);
 
 
 
   //SQL Pulls for latLong and Address
   var latLong = [data[0].latitude, data[0].longitude];
-  var address = 'UCI DCE';
+  var address = data[0].streetName;
 
   //Need to replace setView to lat/long in database
   var mymap = L.map('mapid').setView(latLong, 13);
