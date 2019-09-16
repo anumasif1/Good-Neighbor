@@ -13,7 +13,6 @@ module.exports = function (app, passport) {
     app.get('/success', isLoggedIn, authController.dashboard);
     app.post('/success/post', authController.dashboardPost);
     app.post('/success/comment', authController.dashboardComment);
-
     app.get("/index", isLoggedInHome, (req, res) => {
         res.render("index");
     });
